@@ -30,7 +30,7 @@ const Auth = () => {
             ? { email, password }
             : { name, email, password };
 
-          const res = await axios.post(endpoint, payload);
+          const res = await API.post(endpoint, payload);
 
           // 🔐 Save token
           localStorage.setItem("token", res.data.token);
