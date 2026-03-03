@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API from "../api"; 
 
 
 const Auth = () => {
@@ -23,15 +24,13 @@ const Auth = () => {
         try {
           setLoading(true);
 
-          const url = isLogin
-            ? "http://localhost:5000/api/auth/login"
-            : "http://localhost:5000/api/auth/register";
+          const endpoint = isLogin ? "/auth/login" : "/auth/register";
 
           const payload = isLogin
             ? { email, password }
             : { name, email, password };
 
-          const res = await axios.post(url, payload);
+          const res = await axios.post(endpoint, payload);
 
           // 🔐 Save token
           localStorage.setItem("token", res.data.token);
